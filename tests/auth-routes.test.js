@@ -23,14 +23,6 @@ describe("GET / ", () => {
     expect(response.statusCode).toBe(200);
   });
 });
-describe("GET /profile ", () => {
-  test("It should respond with unauthorized", async () => {
-    const response = await request(app).get("/profile");
-    expect(response.unauthorized).toBe(true);
-  });
-});
-
-
 
 describe("POST /signup ", () => {
   test("It should respond with an Ok", async () => {
@@ -51,9 +43,31 @@ describe("POST /login ", () => {
     USER_MOCK_TOKEN = response.body.token
     expect(response.body.token).not.toBe(null);
   });
+
+  test("It should sign in with wrong password", async () => {
+    const response = await request(app)
+      .post("/login")
+      .set({ "content-type": "application/x-www-form-urlencoded" })
+      .send(`email=${USER_MOCK.email}&password=${12121212}`)
+
+    expect(response.body.hasOwnProperty('error')).toBe(true);
+  });
+
+  test("It should sign in with wrong email", async () => {
+    const response = await request(app)
+      .post("/login")
+      .set({ "content-type": "application/x-www-form-urlencoded" })
+      .send(`email=notexist@example.com&password=${12121212}`)
+
+    expect(response.body.hasOwnProperty('error')).toBe(true);
+  });
 });
 
 describe("GET /profile ", () => {
+  test("It should respond with unauthorized", async () => {
+    const response = await request(app).get("/profile");
+    expect(response.unauthorized).toBe(true);
+  });
   test("It should respond with an Ok", async () => {
     const response = await request(app)
       .get("/profile")
@@ -66,7 +80,6 @@ describe("GET /profile ", () => {
 
 afterAll(async () => {
   const result = await User.deleteOne({ email: USER_MOCK.email })
-  console.log(result)
   await mongoose.connection.close();
 });
 

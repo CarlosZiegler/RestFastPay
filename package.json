@@ -1,5 +1,5 @@
 {
-  "name": "project-name",
+  "name": "restfastpay",
   "version": "1.0.0",
   "description": "API with JWT",
   "main": "app.js",
@@ -9,7 +9,7 @@
   "private": false,
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
+    "dev": "DEBUG=restfastpay:* nodemon app.js",
     "test": "jest --forceExit --detectOpenHandles --coverage"
   },
   "dependencies": {

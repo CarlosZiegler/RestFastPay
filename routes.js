@@ -15,7 +15,7 @@ const routes = express.Router();
  *    description: landingpage
  *       
  */
-routes.post("/", (req, res, next) => {
+routes.get("/", (req, res, next) => {
     res.json({ message: "Success" })
 });
 /**

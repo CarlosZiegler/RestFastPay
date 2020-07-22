@@ -35,13 +35,11 @@ module.exports = {
         try {
             const result = await Item.deleteOne({ _id: _id })
             if (result.deletedCount === 1) {
-                return res.status(200).json({ message: "deleted" })
+                return res.status(200).json({ message: "item deleted" })
             }
-
         } catch (error) {
             return res.status(404).json(error)
         }
-
     },
     async update(req, res, next) {
 

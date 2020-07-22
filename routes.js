@@ -63,7 +63,7 @@ routes.get("/items", passport.authenticate('jwt', { session: false }), ItemContr
  * @swagger
  * /item/create:
  *  post:
- *    description: Create new item
+ *    description: create new item
  *       
  */
 routes.post("/item/create", passport.authenticate('jwt', { session: false }), ItemController.store);
@@ -80,10 +80,10 @@ routes.put("/item/update/:id", passport.authenticate('jwt', { session: false }),
 /**
  * @swagger
  * /item/delete/:id:
- *  post:
+ *  delete:
  *    description: delete item
  *       
  */
-routes.post("/item/delete/:id", passport.authenticate('jwt', { session: false }), ItemController.destroy);
+routes.delete("/item/delete/:id", passport.authenticate('jwt', { session: false }), ItemController.destroy);
 
 module.exports = routes;

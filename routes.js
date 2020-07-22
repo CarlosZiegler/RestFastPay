@@ -2,6 +2,9 @@ const express = require("express");
 const passport = require('passport');
 const AuthController = require("./controllers/AuthController");
 const ProfileController = require("./controllers/ProfileController");
+const OrderController = require("./controllers/OrderController");
+const ItemController = require("./controllers/ItemController");
+
 
 const routes = express.Router();
 
@@ -18,6 +21,7 @@ const routes = express.Router();
 routes.get("/", (req, res, next) => {
     res.json({ message: "Success" })
 });
+
 /**
  * @swagger
  * /signup:
@@ -38,12 +42,48 @@ routes.post("/login", AuthController.index);
 
 /**
  * @swagger
- * /profile:
- *  post:
- *    description: access the route only with valid token
+ * /main:
+ *  get:
+ *    description: Get all orders
  *       
  */
-routes.get("/profile", passport.authenticate('jwt', { session: false }), ProfileController.index);
+routes.get("/main", passport.authenticate('jwt', { session: false }), OrderController.store);
 
+
+/**
+ * @swagger
+ * /items:
+ *  get:
+ *    description: Get all items
+ *       
+ */
+routes.get("/items", passport.authenticate('jwt', { session: false }), ItemController.index);
+
+/**
+ * @swagger
+ * /item/create:
+ *  post:
+ *    description: Create new item
+ *       
+ */
+routes.post("/item/create", passport.authenticate('jwt', { session: false }), ItemController.store);
+
+/**
+ * @swagger
+ * /item/update/:id:
+ *  put:
+ *    description: update item
+ *       
+ */
+routes.put("/item/update/:id", passport.authenticate('jwt', { session: false }), ItemController.update);
+
+/**
+ * @swagger
+ * /item/delete/:id:
+ *  post:
+ *    description: delete item
+ *       
+ */
+routes.post("/item/delete/:id", passport.authenticate('jwt', { session: false }), ItemController.destroy);
 
 module.exports = routes;

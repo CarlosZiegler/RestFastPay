@@ -5,6 +5,7 @@ const jwtSecret = require('../jwtConfig')
 module.exports = {
     // Create new User account
     async store(req, res, next) {
+        console.log(req.body)
         res.json({
             message: 'Signup successful',
             user: req.user

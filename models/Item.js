@@ -3,8 +3,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const itemSchema = new Schema({
-    descritpion: String,
-    value: Number,
+    name: String,
+    price: Number,
     imageUrl: String,
 }, {
     timestamps: {

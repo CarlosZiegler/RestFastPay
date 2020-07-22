@@ -7,10 +7,9 @@ const Item = require('../models/Item')
 let itemMockID;
 const itemMock =
 {
-
-    description: 'hamburguer',
-    value: 14.50,
-    urlImage: 'https://restfastpay.com/item/image/1232323',
+    name: "hamburguer",
+    price: 14.50,
+    urlImage: "https://restfastpay.com/item/image/1232323",
 }
 
 
@@ -38,7 +37,7 @@ describe('Testing Model Item', () => {
 
         const itemUpdateMock =
         {
-            value: 20.00,
+            price: 20.00,
         }
 
 
@@ -46,7 +45,7 @@ describe('Testing Model Item', () => {
         expect(result.nModified).toBe(1);
     });
 
-    test('Find item with ID and delete delete', async () => {
+    test('Find item with ID and delete ', async () => {
         const result = await Item.deleteOne({ _id: itemMockID })
         expect(result.deletedCount).toBe(1);
     });

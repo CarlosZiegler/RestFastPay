@@ -10,6 +10,16 @@ const routes = express.Router();
 
 /**
  * @swagger
+ * /:
+ *  get:
+ *    description: landingpage
+ *       
+ */
+routes.get("/", (req, res, next) => {
+    res.json({ message: "Success" })
+});
+/**
+ * @swagger
  * /signup:
  *  post:
  *    description: create a user

@@ -60,14 +60,14 @@ describe("POST /login ", () => {
   });
 });
 
-describe("GET /profile, this is a secure route ", () => {
+describe("GET /orders, this is a secure route ", () => {
   test("It should respond with unauthorized without token", async () => {
-    const response = await request(app).get("/profile");
+    const response = await request(app).get("/orders");
     expect(response.unauthorized).toBe(true);
   });
   test("It should respond with an Ok", async () => {
     const response = await request(app)
-      .get("/profile")
+      .get("/orders")
       .set({
         "authorization": `Bearer ${USER_MOCK_TOKEN}`
       })

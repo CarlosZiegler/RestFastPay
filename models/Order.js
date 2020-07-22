@@ -14,7 +14,6 @@ const orderSchema = new Schema({
     subtotal: Number,
     vat: Number,
     total: Number,
-    link: String,
     status: {
         type: String,
         enum: ['open', 'closed'],

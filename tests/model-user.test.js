@@ -50,6 +50,19 @@ describe('Testing Model User', () => {
         expect(result.nModified).toBe(1);
     });
 
+    test('Check password with wrong password', async () => {
+
+        const user = await User.findOne(userMockID)
+        const result = await user.isValidPassword("123456789")
+        expect(result).toBe(false);
+    });
+    test('Check password with correct password', async () => {
+
+        const user = await User.findOne(userMockID)
+        const result = await user.isValidPassword("12345678")
+        expect(result).toBe(true);
+    });
+
     test('Find user with ID and delete User', async () => {
         const result = await User.deleteOne({ _id: userMockID })
         expect(result.deletedCount).toBe(1);

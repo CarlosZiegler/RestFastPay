@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const tableSchema = new Schema({
     number: Number,
+    qrcode_link: String,
 }, {
     timestamps: {
         createdAt: "created_at",

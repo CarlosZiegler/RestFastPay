@@ -10,9 +10,6 @@ const USER_MOCK =
 }
 let USER_MOCK_TOKEN;
 
-beforeAll(() => {
-
-});
 beforeEach(() => {
   jest.setTimeout(4000);
 });
@@ -35,7 +32,7 @@ describe("POST /signup ", () => {
 });
 
 describe("POST /login ", () => {
-  test("It should sign in user", async () => {
+  test("It should sign in user with correct credentials", async () => {
     const response = await request(app)
       .post("/login")
       .set({ "content-type": "application/x-www-form-urlencoded" })
@@ -63,8 +60,8 @@ describe("POST /login ", () => {
   });
 });
 
-describe("GET /profile ", () => {
-  test("It should respond with unauthorized", async () => {
+describe("GET /profile, this is a secure route ", () => {
+  test("It should respond with unauthorized without token", async () => {
     const response = await request(app).get("/profile");
     expect(response.unauthorized).toBe(true);
   });
@@ -79,7 +76,7 @@ describe("GET /profile ", () => {
 });
 
 afterAll(async () => {
-  const result = await User.deleteOne({ email: USER_MOCK.email })
+  await User.deleteOne({ email: USER_MOCK.email })
   await mongoose.connection.close();
 });
 

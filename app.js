@@ -21,7 +21,7 @@ const swaggerOptions = {
             contact: {
                 name: 'Carlos Ziegler'
             },
-            servers: ['http://localhost:3000']
+            servers: ['http://localhost:3000', 'https://restfastpay.herokuapp.com/']
         }
     },
     apis: ["routes.js"]

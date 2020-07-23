@@ -16,8 +16,8 @@ connectToMongo();
 const swaggerOptions = {
     swaggerDefinition: {
         info: {
-            title: 'Title Project',
-            description: 'Description Project',
+            title: 'RestFastPay',
+            description: 'Pay your recipient in restaurant per simple QRcode',
             contact: {
                 name: 'Carlos Ziegler'
             },

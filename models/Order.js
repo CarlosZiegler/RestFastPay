@@ -3,14 +3,19 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
+    userID: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     itemsId: [{
         type: Schema.Types.ObjectId,
-        ref: 'Item'
+        ref: 'Item',
+        unique: false
     }],
     tableId: {
         type: Schema.Types.ObjectId,
         ref: 'Table',
-        unique: true
+        unique: false
     },
     subtotal: Number,
     vat: Number,

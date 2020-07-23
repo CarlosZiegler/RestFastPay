@@ -8,6 +8,14 @@ module.exports = {
             res.status(404).json(error)
         }
     },
+    async show(req, res, next) {
+        try {
+            const table = await Table.findOne({ _id: req.params.id })
+            res.json(table)
+        } catch (error) {
+            res.status(404).json(error)
+        }
+    },
     async store(req, res, next) {
         try {
 

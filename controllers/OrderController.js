@@ -10,22 +10,30 @@ module.exports = {
             res.status(404).json(error)
         }
     },
+    async show(req, res, next) {
+        try {
+            const order = await Order.findOne({ _id: req.params.id }).populate('userID').populate('itemsId').populate('tableId')
+            res.json(order)
+        } catch (error) {
+            res.status(404).json(error)
+        }
+    },
     async store(req, res, next) {
         try {
-
             const { itemsId, tableId, status } = req.body
             const prices = await getPricesFromListItems(itemsId)
             const subtotal = prices.reduce((acc, item) => acc + item, 0)
             const vat = subtotal * 0.19
             const total = subtotal + vat
 
-            const result = await Order.create({ itemsId, tableId, status, subtotal, vat, total })
+            const result = await Order.create({ userID: req.user._id, itemsId, tableId, status, subtotal, vat, total })
             if (!result) {
                 return res.status(404).json({
                     message: 'Error',
                 })
             }
-            return res.status(200).json(result)
+            const order = await Order.findOne({ _id: result._id }).populate('userID').populate('itemsId').populate('tableId')
+            return res.status(200).json(order)
 
         } catch (error) {
             console.log(error)

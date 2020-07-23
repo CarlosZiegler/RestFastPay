@@ -9,7 +9,8 @@ const orderSchema = new Schema({
     }],
     tableId: {
         type: Schema.Types.ObjectId,
-        ref: 'Table'
+        ref: 'Table',
+        unique: true
     },
     subtotal: Number,
     vat: Number,

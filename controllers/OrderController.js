@@ -1,5 +1,6 @@
 const Order = require('../models/Order')
 const Item = require('../models/Item')
+const getPricesFromListItems = require('../utils/getPricesFromListItems')
 module.exports = {
     async index(req, res, next) {
         try {
@@ -13,24 +14,12 @@ module.exports = {
         try {
 
             const { itemsId, tableId, status } = req.body
-            //problema com promisses
-            // const getPrice = async () => {
-            //     const prices = await itemsId.map(async (itemID) => {
-            //         const { price } = await Item.findById(itemID)
-            //         // console.log(typeof price)
-            //         return price
-            //     })
+            const prices = await getPricesFromListItems(itemsId)
+            const subtotal = prices.reduce((acc, item) => acc + item, 0)
+            const vat = subtotal * 0.19
+            const total = subtotal + vat
 
-            //     return prices
-            // }
-
-            // const getSubtotal = async () => {
-            //     const prices = await getPrice()
-
-            // }
-            // getSubtotal()
-
-            const result = await Order.create({ itemsId, tableId, status })
+            const result = await Order.create({ itemsId, tableId, status, subtotal, vat, total })
             if (!result) {
                 return res.status(404).json({
                     message: 'Error',

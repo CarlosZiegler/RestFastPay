@@ -25,7 +25,6 @@ module.exports = {
             const subtotal = prices.reduce((acc, item) => acc + item, 0)
             const vat = subtotal * 0.19
             const total = subtotal + vat
-
             const result = await Order.create({ userID: req.user._id, itemsId, tableId, status, subtotal, vat, total })
             if (!result) {
                 return res.status(404).json({

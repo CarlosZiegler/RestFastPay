@@ -63,6 +63,15 @@ routes.post("/item/create", passport.authenticate('jwt', { session: false }), It
 /**
  * @swagger
  * /item/update/:id:
+ *  get:
+ *    description: get item by ID
+ *       
+ */
+routes.get("/item/:id", passport.authenticate('jwt', { session: false }), ItemController.show);
+
+/**
+ * @swagger
+ * /item/update/:id:
  *  put:
  *    description: update item
  *       
@@ -100,6 +109,14 @@ routes.post("/order/create", passport.authenticate('jwt', { session: false }), O
 /**
  * @swagger
  * /order/update/:id:
+ *  get:
+ *    description: get order by ID
+ *       
+ */
+routes.get("/order/:id", passport.authenticate('jwt', { session: false }), OrderController.show);
+/**
+ * @swagger
+ * /order/update/:id:
  *  put:
  *    description: update order
  *       
@@ -132,6 +149,14 @@ routes.get("/tables", passport.authenticate('jwt', { session: false }), TableCon
  */
 routes.post("/table/create", passport.authenticate('jwt', { session: false }), TableController.store);
 
+/**
+ * @swagger
+ * /table/update/:id:
+ *  get:
+ *    description: get table by ID
+ *       
+ */
+routes.get("/table/:id", passport.authenticate('jwt', { session: false }), TableController.show);
 /**
  * @swagger
  * /table/update/:id:

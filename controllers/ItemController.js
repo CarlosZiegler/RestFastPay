@@ -1,9 +1,18 @@
 const Item = require('../models/Item')
 module.exports = {
+
     async index(req, res, next) {
         try {
             const items = await Item.find()
             res.json(items)
+        } catch (error) {
+            res.status(404).json(error)
+        }
+    },
+    async show(req, res, next) {
+        try {
+            const item = await Item.findOne({ _id: req.params.id })
+            res.json(item)
         } catch (error) {
             res.status(404).json(error)
         }

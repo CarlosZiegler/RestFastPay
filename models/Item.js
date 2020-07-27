@@ -8,6 +8,11 @@ const itemSchema = new Schema({
     },
     price: Number,
     imageUrl: String,
+    category: {
+        type: String,
+        enum: ['drink', 'food'],
+    },
+    number: Number
 }, {
     timestamps: {
         createdAt: "created_at",

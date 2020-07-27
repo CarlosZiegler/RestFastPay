@@ -21,7 +21,7 @@ const swaggerOptions = {
             contact: {
                 name: 'Carlos Ziegler'
             },
-            servers: ['http://localhost:3000', 'https://restfastpay.herokuapp.com/']
+            servers: ['http://localhost:3333', 'https://restfastpay.herokuapp.com/']
         }
     },
     apis: ["routes.js"]
@@ -40,6 +40,7 @@ const DisableTryItOutPlugin = function () {
         }
     }
 }
+DisableTryItOutPlugin()
 
 const options = {
     swaggerOptions: {

@@ -1,7 +1,6 @@
 const express = require("express");
 const passport = require('passport');
 const AuthController = require("./controllers/AuthController");
-const ProfileController = require("./controllers/ProfileController");
 const OrderController = require("./controllers/OrderController");
 const TableController = require("./controllers/TableController");
 const ItemController = require("./controllers/ItemController");

@@ -61,7 +61,6 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs, options))
 
 //Handle errors
 app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
     res.json({ error: err });
 });
 

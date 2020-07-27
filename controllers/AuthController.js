@@ -27,7 +27,7 @@ module.exports = {
                         expiresIn: '1d' // expires in 1 day
                     });
                     //Send back the token to the user
-                    return res.json({ token, info });
+                    return res.json({ token, info, userId: user._id });
                 });
             } catch (error) {
                 return next(info);

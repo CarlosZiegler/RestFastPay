@@ -12,7 +12,7 @@ const orderMock =
     subtotal: 14.50,
     vat: 0.19 * 14.50,
     total: 14.50 + (0.19 * 14.50),
-    status: 'open'
+    status: 'pending'
 }
 
 

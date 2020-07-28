@@ -22,7 +22,7 @@ const orderSchema = new Schema({
     total: Number,
     status: {
         type: String,
-        enum: ['open', 'closed'],
+        enum: ['pending', 'paid'],
     }
 }, {
     timestamps: {

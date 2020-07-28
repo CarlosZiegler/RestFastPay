@@ -31,7 +31,7 @@ const ORDER_MOCK =
 {
   "itemsId": ["5f1853311dd40a92e60296c7"],
   "tableId": "5f18601304ca51a18ca918ff",
-  "status": "open"
+  "status": "pending"
 }
 
 let ORDER_MOCK_ID;

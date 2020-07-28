@@ -7,7 +7,7 @@ const Table = require('../models/Table')
 let tableMockID;
 const tableMock =
 {
-    number: 14.50,
+    number: 14,
     qrcode_link: 'https://restfastpay.com/table/1232323',
 }
 
@@ -36,7 +36,7 @@ describe('Testing Model Table', () => {
 
         const tableUpdateMock =
         {
-            value: 20.00,
+            number: 20,
         }
 
 

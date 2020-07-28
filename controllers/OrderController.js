@@ -4,7 +4,7 @@ const getPricesFromListItems = require('../utils/getPricesFromListItems')
 module.exports = {
     async index(req, res, next) {
         try {
-            const orders = await Order.find()
+            const orders = await Order.find({ userID: req.user._id }).populate('tableId')
             res.json(orders)
         } catch (error) {
             res.status(404).json(error)
@@ -32,7 +32,7 @@ module.exports = {
                     message: 'Error',
                 })
             }
-            const order = await Order.findOne({ _id: result._id }).populate('userID').populate('itemsId').populate('tableId')
+            const order = await Order.findOne({ _id: result._id }).populate('itemsId').populate('tableId')
             return res.status(200).json(order)
 
         } catch (error) {

@@ -22,14 +22,18 @@ module.exports = {
             const { number } = req.body
             const tables = await Table.findOne({ number: number })
             if (tables) {
-                return res.status(404).json({
-                    message: 'Table exist',
+                return res.json({
+                    error: {
+                        message: 'Table exist',
+                    }
                 })
             }
-            const result = await Table.create({ number, qrcode_link: `table/qrcode/${number}` })
+            const result = await Table.create({ number: `#${number}`, qrcode_link: `table/qrcode/${number}` })
             if (!result) {
-                return res.status(404).json({
-                    message: 'Error',
+                return res.json({
+                    error: {
+                        message: 'Error',
+                    }
                 })
             }
             return res.status(200).json(result)

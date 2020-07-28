@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const tableSchema = new Schema({
-    number: Number,
+    number: String,
     qrcode_link: String,
 }, {
     timestamps: {

@@ -15,7 +15,7 @@ let USER_MOCK_TOKEN;
 
 const ITEM_MOCK =
 {
-  "name": "Hamburguer",
+  "name": "Hamburguer Test",
   "price": 18.40,
   "urlImage": "https://restfastpay.com/item/image/1232323"
 }
@@ -23,7 +23,7 @@ let ITEM_MOCK_ID;
 
 const TABLE_MOCK =
 {
-  "number": 22
+  "number": '22'
 }
 let TABLE_MOCK_ID;
 
@@ -204,7 +204,7 @@ describe("GET /table/:id ", () => {
 
 describe("UPDATE /table/update ", () => {
   test("It should respond with an 200", async () => {
-    const newNumber = { "number": 10 }
+    const newNumber = { "number": '10' }
     const response = await request(app)
       .put(`/table/update/${TABLE_MOCK_ID}`)
       .set({

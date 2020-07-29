@@ -26,7 +26,8 @@ module.exports = {
                     message: 'Item exist',
                 })
             }
-            const result = await Item.create({ name, price })
+            const itemNumber = await Item.find().countDocuments()
+            const result = await Item.create({ name, price, number: itemNumber + 1 })
             if (!result) {
                 return res.status(404).json({
                     message: 'Error',

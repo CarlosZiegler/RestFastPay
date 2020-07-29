@@ -53,6 +53,7 @@ module.exports = {
     async update(req, res, next) {
         const _id = req.params.id
         const data = req.body
+        console.log(data)
         try {
             const result = await Order.updateOne({ _id: _id }, data)
             if (result.nModified === 1) {

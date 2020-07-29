@@ -12,7 +12,10 @@ const itemSchema = new Schema({
         type: String,
         enum: ['drink', 'food'],
     },
-    number: Number
+    number: {
+        type: Number,
+        default: 0,
+    }
 }, {
     timestamps: {
         createdAt: "created_at",

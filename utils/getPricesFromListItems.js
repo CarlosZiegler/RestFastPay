@@ -1,7 +1,6 @@
 const Item = require('../models/Item')
 
 const getPricesFromListItems = async (arrayIds) => {
-    console.log(arrayIds)
     try {
         return await Promise.all(arrayIds
             .map(async id => {

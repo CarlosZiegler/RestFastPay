@@ -3,7 +3,7 @@ module.exports = {
 
     async index(req, res, next) {
         try {
-            const items = await Item.find()
+            const items = await Item.find({ userID: req.user._id })
             res.json(items)
         } catch (error) {
             res.status(404).json(error)
@@ -27,7 +27,7 @@ module.exports = {
                 })
             }
             const itemNumber = await Item.find().countDocuments()
-            const result = await Item.create({ name, price, number: itemNumber + 1, category })
+            const result = await Item.create({ userID: req.user._id, name, price, number: itemNumber + 1, category })
             if (!result) {
                 return res.status(404).json({
                     message: 'Error',

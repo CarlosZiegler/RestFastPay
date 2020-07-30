@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require('passport');
 const AuthController = require("./controllers/AuthController");
 const OrderController = require("./controllers/OrderController");
+const PaymentController = require("./controllers/PaymentController");
 const TableController = require("./controllers/TableController");
 const ItemController = require("./controllers/ItemController");
 
@@ -173,5 +174,15 @@ routes.put("/table/update/:id", passport.authenticate('jwt', { session: false })
  *       
  */
 routes.delete("/table/delete/:id", passport.authenticate('jwt', { session: false }), TableController.destroy);
+
+
+/**
+ * @swagger
+ * /payment/order/:id:
+ *  get:
+ *    description: get order by ID for payment
+ *       
+ */
+routes.get("/payment/order/:id", PaymentController.show);
 
 module.exports = routes;

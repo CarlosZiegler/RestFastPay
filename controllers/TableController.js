@@ -28,7 +28,7 @@ module.exports = {
                     }
                 })
             }
-            const result = await Table.create({ number: `#${number}`, qrcode_link: `table/qrcode/${number}` })
+            const result = await Table.create({ number: `#${number}`, qrcode_link: `table/qrcode/${number}`, status: 'free' })
             if (!result) {
                 return res.json({
                     error: {

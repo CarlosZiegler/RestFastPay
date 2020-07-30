@@ -2,7 +2,7 @@ const Table = require('../models/Table')
 module.exports = {
     async index(req, res, next) {
         try {
-            const tables = await Table.find()
+            const tables = await Table.find({userId: req.user._id})
             res.json(tables)
         } catch (error) {
             res.status(404).json(error)
@@ -20,15 +20,15 @@ module.exports = {
         try {
 
             const { number } = req.body
-            const tables = await Table.findOne({ number: number })
+            const tables = await Table.findOne({ number: number, userId: req.user._id })
             if (tables) {
                 return res.json({
                     error: {
-                        message: 'Table exist',
+                        message: 'Table exists',
                     }
                 })
             }
-            const result = await Table.create({ number: `#${number}`, qrcode_link: `table/qrcode/${number}`, status: 'free' })
+            const result = await Table.create({ number: `#${number}`, userId: req.user._id, status: 'free' })
             if (!result) {
                 return res.json({
                     error: {

@@ -19,7 +19,7 @@ module.exports = {
     },
     async store(req, res, next) {
         try {
-            const { name, price } = req.body
+            const { name, price, category } = req.body
             const item = await Item.findOne({ name: name })
             if (item) {
                 return res.status(404).json({
@@ -27,7 +27,7 @@ module.exports = {
                 })
             }
             const itemNumber = await Item.find().countDocuments()
-            const result = await Item.create({ name, price, number: itemNumber + 1 })
+            const result = await Item.create({ name, price, number: itemNumber + 1, category })
             if (!result) {
                 return res.status(404).json({
                     message: 'Error',

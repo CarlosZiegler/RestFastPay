@@ -19,16 +19,16 @@ module.exports = {
     async store(req, res, next) {
         try {
 
-            const { number } = req.body
-            const tables = await Table.findOne({ number: number })
+            const { number, user } = req.body
+            const tables = await Table.findOne({ number: number, user: user })
             if (tables) {
                 return res.json({
                     error: {
-                        message: 'Table exist',
+                        message: 'Table exists',
                     }
                 })
             }
-            const result = await Table.create({ number: `#${number}`, qrcode_link: `table/qrcode/${number}`, status: 'free' })
+            const result = await Table.create({ number: `#${number}`, user: user, status: 'free' })
             if (!result) {
                 return res.json({
                     error: {

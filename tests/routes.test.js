@@ -29,8 +29,6 @@ let TABLE_MOCK_ID;
 
 const ORDER_MOCK =
 {
-  "itemsId": ["5f1853311dd40a92e60296c7"],
-  "tableId": "5f18601304ca51a18ca918ff",
   "status": "pending"
 }
 
@@ -268,7 +266,7 @@ describe("GET /order/:id ", () => {
 
 describe("UPDATE /order/update ", () => {
   test("It should respond with an 200", async () => {
-    const updateItemsofOrder = { "itemsId": ["5f1853311dd40a92e60296c7", "5f196f2dea74090bf127f649"] }
+    const updateItemsofOrder = { "status": "paid" }
     const response = await request(app)
       .put(`/order/update/${ORDER_MOCK_ID}`)
       .set({
@@ -276,8 +274,8 @@ describe("UPDATE /order/update ", () => {
       })
       .send(updateItemsofOrder)
 
-    const { itemsId } = await Order.findById(ORDER_MOCK_ID)
-    expect(itemsId.length).toBe(2);
+    const { status } = await Order.findById(ORDER_MOCK_ID)
+    expect(status).toBe('paid');
   });
 });
 

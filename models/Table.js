@@ -7,7 +7,7 @@ const tableSchema = new Schema({
     qrcode_link: String,
     status: {
         type: String,
-        enum: ['free', 'occuped']
+        enum: ['free', 'occupied']
     }
 }, {
     timestamps: {

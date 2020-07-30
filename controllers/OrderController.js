@@ -1,5 +1,7 @@
 const Order = require('../models/Order')
 const Item = require('../models/Item')
+const Table = require('../models/Table')
+
 const getPricesFromListItems = require('../utils/getPricesFromListItems')
 module.exports = {
     async index(req, res, next) {
@@ -21,6 +23,12 @@ module.exports = {
     async store(req, res, next) {
         try {
             const { itemsId, tableId, status } = req.body
+            const setStatusTable = await Table.updateOne({ _id: tableId }, { status: 'occupied' })
+            if (itemsId === undefined) {
+                const result = await Order.create({ userID: req.user._id, status: 'pending', subtotal: 0, vat: 0, total: 0 })
+                const order = await Order.findOne({ _id: result._id }).populate('itemsId').populate('tableId')
+                return res.status(200).json(order)
+            }
             const prices = await getPricesFromListItems(itemsId)
             const subtotal = prices.reduce((acc, item) => acc + item, 0)
             const vat = subtotal * 0.19

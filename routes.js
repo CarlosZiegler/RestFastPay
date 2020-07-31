@@ -184,5 +184,13 @@ routes.delete("/table/delete/:id", passport.authenticate('jwt', { session: false
  *       
  */
 routes.get("/payment/order/:id", PaymentController.show);
+/**
+ * @swagger
+ * /payment/update/:id:
+ *  get:
+ *    description: get order by ID for payment
+ *       
+ */
+routes.put("/payment/update/:id", PaymentController.update);
 
 module.exports = routes;

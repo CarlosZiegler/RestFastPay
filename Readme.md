@@ -1,16 +1,18 @@
 <p align="center">
-  <a href="LICENSE" >
-    <img alt="License" src="https://img.shields.io/badge/license-MIT-%23F8952D">
-  </a>
+  Restaurant fast pay Backend
 </p>
 
 ## About
 
-Starter expressJs APi with JWT
+Contactless restaurant payment app, allowing automated checkout for restaurants and online payment for their customers. The app used not only JSON web tokens, but also a pdf receipt generator and a QR code scanning functionality (and much more).
 
 ## Why
 
-I am create this repo for simple starter applications with basic code.
+
+The recent Coronavirus pandemic has not only scared the hell out of everyone, but also boosted the development of all things contactless.
+Since money and credit card terminals are extremely exposed to contamination and hard to disinfect, the next thing contactless will probably be  a payment app.
+Additional benefit for restaurants and bars is the automated checkout.
+For customers - the ability to get their receipt as a .pdf file.
 
 ## Packages
 
@@ -25,40 +27,6 @@ The project was developed using the following technologies
 - [supertest](https://www.npmjs.com/package/supertest)
 - [nodemon](https://nodemon.io/)
 - [cors](https://www.npmjs.com/package/cors)
-
-## You need add these files in root folder:
-
--jstConfig.js 
-```
-module.exports = {
-    secret: 'my-secret-word',
-}
-```
-
--.env 
-```
-PORT=3000 
-ENV=development
-MONGO_URI=your_url_from_MongoDB
-```
-## Starting:
-Make sure you are in the project's root folder
-
-### With Yarn
-
-```yarn```
-
-``` yarn start```
-
-``` yarn test```
-
-### With NPM
-
-```npm install```
-
-``` npm run start```
-
-``` npm run test```
 
 ## :pencil: Author
 
